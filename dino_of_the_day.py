@@ -9,7 +9,7 @@ EMAIL_CONFIG = {"To":["tanner.martin@wachter.com", "beckett.mcfarland@wachter.co
 yolo
 """
 #how the date in the subject should be formatted
-DATE_FORMAT = "%m-%d-Y"
+DATE_FORMAT = "%m-%d-%Y"
 
 class DinoEmail:
     def __init__(self) -> None:
