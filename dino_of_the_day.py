@@ -3,7 +3,7 @@ from datetime import datetime
 import os
 
 #who all you want the email to go to and what the prefix of the message subject should be
-EMAIL_CONFIG = {"To":["tanner.martin@wachter.com", "beckett.mcfarland@wachter.com"],
+EMAIL_CONFIG = {"To":["tanner.martin@wachter.com", "beckett.mcfarland@wachter.com", "shane.landsberry@wachter.com","catarina.wolfe@wachter.com","shayna.egan@wachter.com","miranda.mendoza@wachter.com","miranda.brown@wachter.com","Chelsea.Villanueva@wachter.com"],
                 "Subject":"Dino of the day"}
 """""
 yolo
