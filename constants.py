@@ -7,3 +7,8 @@ SCRIPT_NAME = os.path.basename(SCRIPT_PATH)
 SCRIPT_DIR = SCRIPT_PATH.replace(SCRIPT_NAME, "")
 IMG_DIR_NAME = "images"
 IMG_DIR = os.path.join(SCRIPT_DIR, IMG_DIR_NAME)
+if not os.path.isdir(IMG_DIR):
+    try:
+        os.mkdir(IMG_DIR)
+    except:
+        f"Directory {IMG_DIR} did not exist and I tried to make it but it failed"
