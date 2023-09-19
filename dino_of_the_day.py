@@ -5,7 +5,9 @@ import os
 #who all you want the email to go to and what the prefix of the message subject should be
 EMAIL_CONFIG = {"To":["tanner.martin@wachter.com", "beckett.mcfarland@wachter.com"],
                 "Subject":"Dino of the day"}
-
+"""""
+yolo
+"""
 #how the date in the subject should be formatted
 DATE_FORMAT = "%m-%d-Y"
 
