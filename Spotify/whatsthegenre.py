@@ -21,7 +21,7 @@ def get_1000_liked_songs():
     offset = 0
     limit = 50  # Adjust the limit to control how many songs are fetched in each request
     
-    while offset < 1000:  # Stop when 1000 songs are fetched
+    while offset < 2000:  # Stop when 1000 songs are fetched
         tracks = sp.current_user_saved_tracks(limit=min(limit, 1000 - offset), offset=offset)
         if not tracks['items']:
             break
