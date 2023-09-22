@@ -6,7 +6,7 @@ import time
 
 # Who you want the email to go to and what the prefix of the message subject should be
 EMAIL_CONFIG = {
-    "To": ["rolloutsupport@wachter.com","john.brewer@wachter.com","catarina.wolfe@wachter.com","shane.landsberry@wachter.com","Tanner.Martin@wachter.com"],
+    "To": ["rolloutsupport@wachter.com","john.brewer@wachter.com","catarina.wolfe@wachter.com","shane.landsberry@wachter.com","Tanner.Martin@wachter.com","logan.rose@wachter.com","jordan.matz@wachter.com"],
     "Subject": "Dino of the day"
 }
 
