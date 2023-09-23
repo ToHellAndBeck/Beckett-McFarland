@@ -4,7 +4,8 @@ from constants import DINO_DIR_ENDPOINT, ALL_DINOS_ENDPOINT, DINO_INFO_TAG, IMG_
 from dino_of_the_day import DinoEmail
 from bs4 import BeautifulSoup
 import os
-
+import schedule
+import time
 def get_all_dinos():
     r = requests.get(ALL_DINOS_ENDPOINT)
     return r.json()
@@ -76,3 +77,21 @@ dino_info_dict = dino_html_to_dict(dino_info_html)
 message_body = create_message_body(dino_info_dict)
 dino_email = DinoEmail()
 dino_email.send_dino(dino_name, dino_img_path, message_body)
+def run_script():
+    """
+    Function to run the script to send the Dino of the Day email.
+    """
+    all_dinos = get_all_dinos()
+    restructured_dinos = restructure_dinos(all_dinos)
+    dino_names = [i for i in restructured_dinos]
+    dino_name = get_random_dino_name(dino_names)
+    dino_of_the_day = restructured_dinos.get(dino_name)
+    dino_html = get_dino_html(dino_name)
+    dino_info_html = get_dino_info_html(dino_html)
+    dino_img_link = get_dino_img_link(dino_info_html)
+    dino_img_path = download_dino_image_and_return_path(dino_img_link)
+    dino_info_dict = dino_html_to_dict(dino_info_html)
+    message_body = create_message_body(dino_info_dict)
+    dino_email = DinoEmail()
+    dino_email.send_dino(dino_name, dino_img_path, message_body)
+

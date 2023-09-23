@@ -1,14 +1,16 @@
 import win32com.client
 from datetime import datetime
 import os
+import schedule
+import time
 
-#who all you want the email to go to and what the prefix of the message subject should be
-EMAIL_CONFIG = {"To":["tanner.martin@wachter.com", "beckett.mcfarland@wachter.com", "shane.landsberry@wachter.com","catarina.wolfe@wachter.com","shayna.egan@wachter.com","miranda.mendoza@wachter.com","miranda.brown@wachter.com",""],
-                "Subject":"Dino of the day"}
-"""""
-yolo
-"""
-#how the date in the subject should be formatted
+# Who you want the email to go to and what the prefix of the message subject should be
+EMAIL_CONFIG = {
+    "To": ["rolloutsupport@wachter.com","john.brewer@wachter.com","catarina.wolfe@wachter.com","shane.landsberry@wachter.com","Tanner.Martin@wachter.com","logan.rose@wachter.com","jordan.matz@wachter.com"],
+    "Subject": "Dino of the day"
+}
+
+# How the date in the subject should be formatted
 DATE_FORMAT = "%m-%d-%Y"
 
 class DinoEmail:
