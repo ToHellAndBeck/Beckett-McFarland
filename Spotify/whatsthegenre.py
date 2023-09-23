@@ -1,3 +1,5 @@
+import os
+import json
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
@@ -11,41 +13,66 @@ SPOTIPY_REDIRECT_URI = 'http://localhost:8888/callback'
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
                                                client_secret=SPOTIPY_CLIENT_SECRET,
                                                redirect_uri=SPOTIPY_REDIRECT_URI,
-                                               scope="user-library-read",
-))
+                                               scope="user-library-read"))
 
-# Get the first 1000 of the user's liked songs
-def get_1000_liked_songs():
+def fetch_liked_songs(start_offset=0, limit=50):
+    """
+    Fetch the liked songs from Spotify.
+
+    Args:
+        start_offset (int): The starting offset for fetching liked songs.
+        limit (int): The maximum number of songs to fetch in each request.
+
+    Returns:
+        list: List of liked songs.
+        int: The updated offset for the next fetch.
+    """
     print("Fetching liked songs...")
     results = []
-    offset = 0
-    limit = 50  # Adjust the limit to control how many songs are fetched in each request
+    offset = start_offset
     
     while offset < 2000:  # Stop when 1000 songs are fetched
-        tracks = sp.current_user_saved_tracks(limit=min(limit, 1000 - offset), offset=offset)
+        tracks = sp.current_user_saved_tracks(limit=min(limit, 2000 - offset), offset=offset)
         if not tracks['items']:
             break
         results.extend(tracks['items'])
         offset += limit
     
     print(f"Total liked songs fetched: {len(results)}")
-    return results
+    return results, offset
 
-# Get the genre tags attached to a track
 def get_track_genres(track_id):
+    """
+    Get the genre tags attached to a track.
+
+    Args:
+        track_id (str): The Spotify track ID.
+
+    Returns:
+        list: List of genres for the track.
+    """
     try:
         track = sp.track(track_id)
         if 'artists' in track and len(track['artists']) > 0 and 'genres' in track['artists'][0]:
             return track['artists'][0]['genres']
         else:
             return ["Genre information not available"]
-    except Exception as e:
+    except spotipy.SpotifyException as e:
         return [f"Error: {str(e)}"]
 
 if __name__ == "__main__":
-    # Get the first 1000 of the user's liked songs
-    liked_songs = get_1000_liked_songs()
-    
+    # Check if there's a saved progress file and load the last processed offset
+    progress_file = 'progress.json'
+    start_offset = 0
+
+    if os.path.exists(progress_file):
+        with open(progress_file, 'r') as file:
+            progress_data = json.load(file)
+            start_offset = progress_data.get('last_processed_offset', 0)
+
+    # Get the first 1000 of the user's liked songs starting from the last processed offset
+    liked_songs, start_offset = fetch_liked_songs(start_offset)
+
     if not liked_songs:
         print("No liked songs found.")
     else:
@@ -64,10 +91,18 @@ if __name__ == "__main__":
             
             # Retrieve additional information for the track
             result = sp.search(track_name)
+            if result is None or not result['tracks']['items']:
+                print(f"No information found for track: {track_name}")
+                continue
+
             track_info = result['tracks']['items'][0]
 
             # Retrieve artist information
             artist = sp.artist(track_info["artists"][0]["external_urls"]["spotify"])
+            if artist is None:
+                print(f"No artist information found for track: {track_name}")
+                continue
+
             artist_genres = artist["genres"]
 
             results.append({
