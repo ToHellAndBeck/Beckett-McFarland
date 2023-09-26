@@ -8,7 +8,11 @@ import schedule
 import time
 def get_all_dinos():
     r = requests.get(ALL_DINOS_ENDPOINT)
-    return r.json()
+    try:
+        return r.json()
+    except requests.exceptions.JSONDecodeError as e:
+        print("Error decoding JSON:", str(e))
+        return None  # Return None to handle this case in the calling code
 
 def restructure_dinos(dinos:list[dict]):
     dino_data = dict()

@@ -17,7 +17,7 @@ if not new_entries.empty:
     new_entries_str = new_entries.to_string(index=False)
 
     # Write new entries to a text file
-    text_file_path = r'C:\Users\beckett.mcfarland\Documents\txt_files\new_entries.txt(freight)'  # Replace with your desired text file path
+    text_file_path = r'C:\Users\beckett.mcfarland\Documents\output_excel_files\New_Freight.xlsx'  # Replace with your desired text file path
     with open(text_file_path, 'a') as text_file:
         text_file.write('New entries since {}: \n'.format(previous_date))
         text_file.write(new_entries_str)
