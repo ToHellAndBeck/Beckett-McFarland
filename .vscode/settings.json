@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
+    "AI-Keys.openAI.model": "gpt-3",
+=======
     "AI-Keys.openAI.model": "",
+>>>>>>> 145b441f3400805e0e4400cf22b10705588de041
     "AI-Keys.messages": [
         {
             "role": "system",
@@ -7,6 +11,97 @@
         },
         {
             "role": "user",
+<<<<<<< HEAD
+            "content": "can you write me a python script that will check an excel sheet and copy any new changes to another excel sheet, using today as a refrence point"
+        },
+        {
+            "role": "assistant",
+            "content": "Certainly! Here's a Python script that uses the openpyxl library to check for new changes in an Excel sheet and copies those changes to another Excel sheet. It uses today's date as a reference point.\n\n```python\nimport openpyxl\nfrom datetime import date\n\n# Define the file paths for the source and destination Excel sheets\nsource_file_path = 'path_to_source_excel_sheet.xlsx'\ndestination_file_path = 'path_to_destination_excel_sheet.xlsx'\n\n# Load the source and destination Excel sheets\nsource_workbook = openpyxl.load_workbook(source_file_path)\ndestination_workbook = openpyxl.load_workbook(destination_file_path)\n\n# Get the active sheet from both workbooks\nsource_sheet = source_workbook.active\ndestination_sheet = destination_workbook.active\n\n# Get the last row index of the source sheet\nsource_last_row = source_sheet.max_row\n\n# Get the current date\ntoday = date.today()\n\n# Iterate through each row in the source sheet\nfor row in range(1, source_last_row + 1):\n    # Check if the date in column A of the source sheet is greater than or equal to today's date\n    if source_sheet.cell(row=row, column=1).value.date() >= today:\n        # Copy the row"
+        },
+        {
+            "role": "user",
+            "content": "can you make me a picture of an octomus in the style of van gogh"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-1g9BirG5kElR0b4QIV2TxAlL.png?st=2023-09-21T19%3A25%3A55Z&se=2023-09-21T21%3A25%3A55Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-20T22%3A00%3A12Z&ske=2023-09-21T22%3A00%3A12Z&sks=b&skv=2021-08-06&sig=dKnddXubHbVYrAAzD7%2B7yEMDcCXWgcUFhtRZDwD%2B6kk%3D\">can you make me a picture of an octomus in the style of van gogh</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "draw me a cartoon of a pig and a frog boxing in a ring"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-n5G6TKjz1MoXQwuAjAuX3QIs.png?st=2023-09-21T20%3A06%3A22Z&se=2023-09-21T22%3A06%3A22Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-20T22%3A05%3A19Z&ske=2023-09-21T22%3A05%3A19Z&sks=b&skv=2021-08-06&sig=r7KLJVFWO1EXl2NJIXWY17OFKisVMbi/Tt66TehRj6k%3D\">draw me a cartoon of a pig and a frog boxing in a ring</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "oil painting of a pig and a frog boxing in a ring"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-vYRmWJ8vSsCQ0xTQBcPNtcvU.png?st=2023-09-21T20%3A07%3A08Z&se=2023-09-21T22%3A07%3A08Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-20T21%3A55%3A05Z&ske=2023-09-21T21%3A55%3A05Z&sks=b&skv=2021-08-06&sig=3QHv%2BwhIOFKWNHk1vqkRfNepobJRwepKXxcVGffAx0U%3D\">oil painting of a pig and a frog boxing in a ring</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "draw me a picture of a group of fish in a funny scenario"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-3r5qb1mRMXanFUITjEfB46IB.png?st=2023-09-22T17%3A16%3A21Z&se=2023-09-22T19%3A16%3A21Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-21T22%3A03%3A10Z&ske=2023-09-22T22%3A03%3A10Z&sks=b&skv=2021-08-06&sig=6M2tVb4wIIyYR6TgMV016%2BKE220bsF%2B5DLUR0eJnN%2BQ%3D\">draw me a picture of a group of fish in a funny scenario</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "pencil drawing of two monsters fighting in a field"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-ZMuiVNEUS6AOLlMeKKxqJHU5.png?st=2023-09-22T17%3A16%3A59Z&se=2023-09-22T19%3A16%3A59Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-21T22%3A09%3A41Z&ske=2023-09-22T22%3A09%3A41Z&sks=b&skv=2021-08-06&sig=Yu2ueo9qudPCXKl6aGkfg7O6Kl2VfJEzOjPb/WUAhcU%3D\">pencil drawing of two monsters fighting in a field</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "what is hugging face?"
+        },
+        {
+            "role": "assistant",
+            "content": "what is hugging face? Is it cute?\" I ask his wife. \"That looks really weird. You're feeling better now. We're trying to figure what's going on with the situation.\"\n\n\nIt is his wife who says he's got"
+        },
+        {
+            "role": "user",
+            "content": "what is gpt2 good for?"
+        },
+        {
+            "role": "assistant",
+            "content": "what is gpt2 good for?\n\nIt depends on your situation. The gpt2 feature is the simplest part of cg. You can think of tqq as a function p or pt, and if it takes a bunch"
+        },
+        {
+            "role": "user",
+            "content": "make me a video of a bear waving to me"
+        },
+        {
+            "role": "user",
+            "content": "summarize world war 1 for me"
+        },
+        {
+            "role": "assistant",
+            "content": "World War 1, also known as the Great War, was a global conflict that took place from 1914 to 1918. It involved many nations from around the world, primarily those in Europe, and had a profound impact on the political, social, and economic landscape of the time.\n\nThe war began with the assassination of Archduke Franz Ferdinand of Austria-Hungary in June 1914. This event triggered a series of alliances and declarations of war between various nations. The main opposing forces were the Allies, including countries such as France, Russia, and the United Kingdom, and the Central Powers, which consisted of Germany, Austria-Hungary, and the Ottoman Empire.\n\nThe war was characterized by trench warfare, where soldiers dug deep trenches to protect themselves from enemy fire. It saw the use of new technologies such as machine guns, tanks, airplanes, and chemical weapons, leading to high casualties and a stalemate on the Western Front.\n\nThe conflict also involved significant battles and campaigns, including the Battle of the Somme, the Battle of Verdun, and the Gallipoli campaign. These battles resulted in heavy losses on both sides and had a devastating impact on the soldiers and civilians involved.\n\nWorld War 1 brought about significant changes in the political landscape of"
+        },
+        {
+            "role": "user",
+            "content": "summarize world war 1 for me"
+        },
+        {
+            "role": "assistant",
+            "content": "World War 1, also known as the Great War, was a global conflict that lasted from 1914 to 1918. It was primarily fought between the Allies, including countries such as France, Britain, Russia, and later the United States, against the Central Powers, including Germany, Austria-Hungary, and the Ottoman Empire. The war was sparked by the assassination of Archduke Franz Ferdinand of Austria-Hungary, which led to a series of alliances and escalating tensions among European nations.\n\nThe war was characterized by trench warfare, with soldiers fighting from elaborate systems of trenches dug into the ground. It witnessed significant technological advancements with the introduction of new weapons such as machine guns, tanks, and poison gas. Millions of soldiers and civilians lost their lives in the conflict, making it one of the deadliest wars in history.\n\nThe war had various fronts, including the Western Front in France and Belgium, the Eastern Front between Germany and Russia, and the Middle Eastern Front against the Ottoman Empire. It also saw the involvement of colonies and territories from around the world.\n\nUltimately, the Allies emerged victorious, and the Treaty of Versailles was signed in 1919, imposing harsh penalties on Germany. The war had far-reaching consequences, including the redrawing of borders, the collapse"
+        },
+        {
+            "role": "user",
+            "content": "define append?"
+        },
+        {
+            "role": "assistant",
+            "content": "To append means to add or attach something to the end of something else. In computer programming, it specifically refers to adding data or elements to the end of an existing data structure, such as a list or an array."
+=======
             "content": "we-get?"
         },
         {
@@ -204,6 +299,7 @@
         {
             "role": "user",
             "content": "picture of a hat"
+<<<<<<< HEAD
         },
         {
             "role": "user",
@@ -276,6 +372,9 @@
         {
             "role": "assistant",
             "content": "The \"where\" command is used in command-line interfaces (such as Windows Command Prompt or PowerShell) to locate the executable file associated with a specific command or program. It helps identify the file path of a specific command or program that is being executed when you enter that command.\n\nHere's how it works:\n\n1. Open the command-line interface (e.g., Command Prompt, PowerShell).\n2. Type \"where\" followed by the command or program name you want to locate.\n   For example: `where notepad` or `where python`.\n3. Press Enter.\n\nThe \"where\" command will search the directories listed in the system's \"PATH\" variable (a list of directories where the operating system looks for executable files) to find the specified command or program. It will display the file path(s) of the executable file(s) if found.\n\nNote: The \"where\" command is specific to Windows command-line interfaces. On Unix-based systems (such as Linux or macOS), a similar command called \"which\" is used for the same purpose."
+=======
+>>>>>>> 145b441f3400805e0e4400cf22b10705588de041
+>>>>>>> 2deedf7f0242f18786a874c9ce1b65665052d70d
         }
     ],
     "AI-Keys.openAI.messages": [
@@ -285,6 +384,102 @@
         },
         {
             "role": "user",
+<<<<<<< HEAD
+            "content": "can you write me a python script that will check an excel sheet and copy any new changes to another excel sheet, using today as a refrence point"
+        },
+        {
+            "role": "assistant",
+            "content": "Certainly! Here's a Python script that uses the openpyxl library to check for new changes in an Excel sheet and copies those changes to another Excel sheet. It uses today's date as a reference point.\n\n```python\nimport openpyxl\nfrom datetime import date\n\n# Define the file paths for the source and destination Excel sheets\nsource_file_path = 'path_to_source_excel_sheet.xlsx'\ndestination_file_path = 'path_to_destination_excel_sheet.xlsx'\n\n# Load the source and destination Excel sheets\nsource_workbook = openpyxl.load_workbook(source_file_path)\ndestination_workbook = openpyxl.load_workbook(destination_file_path)\n\n# Get the active sheet from both workbooks\nsource_sheet = source_workbook.active\ndestination_sheet = destination_workbook.active\n\n# Get the last row index of the source sheet\nsource_last_row = source_sheet.max_row\n\n# Get the current date\ntoday = date.today()\n\n# Iterate through each row in the source sheet\nfor row in range(1, source_last_row + 1):\n    # Check if the date in column A of the source sheet is greater than or equal to today's date\n    if source_sheet.cell(row=row, column=1).value.date() >= today:\n        # Copy the row"
+        },
+        {
+            "role": "user",
+            "content": "can you make me a picture of an octomus in the style of van gogh"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-1g9BirG5kElR0b4QIV2TxAlL.png?st=2023-09-21T19%3A25%3A55Z&se=2023-09-21T21%3A25%3A55Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-20T22%3A00%3A12Z&ske=2023-09-21T22%3A00%3A12Z&sks=b&skv=2021-08-06&sig=dKnddXubHbVYrAAzD7%2B7yEMDcCXWgcUFhtRZDwD%2B6kk%3D\">can you make me a picture of an octomus in the style of van gogh</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "draw me a cartoon of a pig and a frog boxing in a ring"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-n5G6TKjz1MoXQwuAjAuX3QIs.png?st=2023-09-21T20%3A06%3A22Z&se=2023-09-21T22%3A06%3A22Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-20T22%3A05%3A19Z&ske=2023-09-21T22%3A05%3A19Z&sks=b&skv=2021-08-06&sig=r7KLJVFWO1EXl2NJIXWY17OFKisVMbi/Tt66TehRj6k%3D\">draw me a cartoon of a pig and a frog boxing in a ring</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "oil painting of a pig and a frog boxing in a ring"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-vYRmWJ8vSsCQ0xTQBcPNtcvU.png?st=2023-09-21T20%3A07%3A08Z&se=2023-09-21T22%3A07%3A08Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-20T21%3A55%3A05Z&ske=2023-09-21T21%3A55%3A05Z&sks=b&skv=2021-08-06&sig=3QHv%2BwhIOFKWNHk1vqkRfNepobJRwepKXxcVGffAx0U%3D\">oil painting of a pig and a frog boxing in a ring</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "draw me a picture of a group of fish in a funny scenario"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-3r5qb1mRMXanFUITjEfB46IB.png?st=2023-09-22T17%3A16%3A21Z&se=2023-09-22T19%3A16%3A21Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-21T22%3A03%3A10Z&ske=2023-09-22T22%3A03%3A10Z&sks=b&skv=2021-08-06&sig=6M2tVb4wIIyYR6TgMV016%2BKE220bsF%2B5DLUR0eJnN%2BQ%3D\">draw me a picture of a group of fish in a funny scenario</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "pencil drawing of two monsters fighting in a field"
+        },
+        {
+            "role": "dalle",
+            "content": "Image URL: <a href=\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9dEGPJmyUEI5LsNu7Veeoymh/user-nacHUHZM1mAgu6rTb7zl14Jj/img-ZMuiVNEUS6AOLlMeKKxqJHU5.png?st=2023-09-22T17%3A16%3A59Z&se=2023-09-22T19%3A16%3A59Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-21T22%3A09%3A41Z&ske=2023-09-22T22%3A09%3A41Z&sks=b&skv=2021-08-06&sig=Yu2ueo9qudPCXKl6aGkfg7O6Kl2VfJEzOjPb/WUAhcU%3D\">pencil drawing of two monsters fighting in a field</a><br><br>Image downloaded to your current working directory"
+        },
+        {
+            "role": "user",
+            "content": "what is hugging face?"
+        },
+        {
+            "role": "assistant",
+            "content": "what is hugging face? Is it cute?\" I ask his wife. \"That looks really weird. You're feeling better now. We're trying to figure what's going on with the situation.\"\n\n\nIt is his wife who says he's got"
+        },
+        {
+            "role": "user",
+            "content": "what is gpt2 good for?"
+        },
+        {
+            "role": "assistant",
+            "content": "what is gpt2 good for?\n\nIt depends on your situation. The gpt2 feature is the simplest part of cg. You can think of tqq as a function p or pt, and if it takes a bunch"
+        },
+        {
+            "role": "user",
+            "content": "make me a video of a bear waving to me"
+        },
+        {
+            "role": "user",
+            "content": "summarize world war 1 for me"
+        },
+        {
+            "role": "assistant",
+            "content": "World War 1, also known as the Great War, was a global conflict that took place from 1914 to 1918. It involved many nations from around the world, primarily those in Europe, and had a profound impact on the political, social, and economic landscape of the time.\n\nThe war began with the assassination of Archduke Franz Ferdinand of Austria-Hungary in June 1914. This event triggered a series of alliances and declarations of war between various nations. The main opposing forces were the Allies, including countries such as France, Russia, and the United Kingdom, and the Central Powers, which consisted of Germany, Austria-Hungary, and the Ottoman Empire.\n\nThe war was characterized by trench warfare, where soldiers dug deep trenches to protect themselves from enemy fire. It saw the use of new technologies such as machine guns, tanks, airplanes, and chemical weapons, leading to high casualties and a stalemate on the Western Front.\n\nThe conflict also involved significant battles and campaigns, including the Battle of the Somme, the Battle of Verdun, and the Gallipoli campaign. These battles resulted in heavy losses on both sides and had a devastating impact on the soldiers and civilians involved.\n\nWorld War 1 brought about significant changes in the political landscape of"
+        },
+        {
+            "role": "user",
+            "content": "summarize world war 1 for me"
+        },
+        {
+            "role": "assistant",
+            "content": "World War 1, also known as the Great War, was a global conflict that lasted from 1914 to 1918. It was primarily fought between the Allies, including countries such as France, Britain, Russia, and later the United States, against the Central Powers, including Germany, Austria-Hungary, and the Ottoman Empire. The war was sparked by the assassination of Archduke Franz Ferdinand of Austria-Hungary, which led to a series of alliances and escalating tensions among European nations.\n\nThe war was characterized by trench warfare, with soldiers fighting from elaborate systems of trenches dug into the ground. It witnessed significant technological advancements with the introduction of new weapons such as machine guns, tanks, and poison gas. Millions of soldiers and civilians lost their lives in the conflict, making it one of the deadliest wars in history.\n\nThe war had various fronts, including the Western Front in France and Belgium, the Eastern Front between Germany and Russia, and the Middle Eastern Front against the Ottoman Empire. It also saw the involvement of colonies and territories from around the world.\n\nUltimately, the Allies emerged victorious, and the Treaty of Versailles was signed in 1919, imposing harsh penalties on Germany. The war had far-reaching consequences, including the redrawing of borders, the collapse"
+        },
+        {
+            "role": "user",
+            "content": "define append?"
+        },
+        {
+            "role": "assistant",
+            "content": "To append means to add or attach something to the end of something else. In computer programming, it specifically refers to adding data or elements to the end of an existing data structure, such as a list or an array."
+        }
+    ],
+    "AI-Keys.openAI.system": "you are a helpful assisitant",
+    "AI-Keys.active.provider": "openai",
+    "AI-Keys.huggingFace.model": "cerspense/zeroscope_v2_576w"
+=======
             "content": "we-get?"
         },
         {
@@ -559,4 +754,5 @@
     "AI-Keys.openAI.system": "You are a software engineer",
     "AI-Keys.active.provider": "huggingface",
     "AI-Keys.huggingFace.model": "prodia/fast-stable-diffusion"
+>>>>>>> 145b441f3400805e0e4400cf22b10705588de041
 }
