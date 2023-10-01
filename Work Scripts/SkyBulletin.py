@@ -171,7 +171,7 @@ class WeatherNewsApp(QWidget):
         canvas = FigureCanvas(fig)
         return canvas  # Return the canvas
     def get_top_news(self):
-        endpoint = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={NEWSAPI_API_KEY}&pageSize=10'
+        endpoint = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={NEWSAPI_API_KEY}&pageSize=6'
         response = requests.get(endpoint)
         data = response.json()
         return data['articles']
