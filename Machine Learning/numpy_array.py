@@ -7,7 +7,7 @@ def preprocess_image(image_path, target_size=(128, 128)):
     Preprocess an image by resizing and normalizing pixel values.
 
     Parameters:
-        image_path (str): C:\\Users\\Beckett\\Downloads\\training
+        image_path (str): C:\\Users\\Beckett\\Pictures\\AI Training\\Wedgies
         target_size (tuple): Desired output image size.
 
     Returns:
@@ -19,15 +19,7 @@ def preprocess_image(image_path, target_size=(128, 128)):
     return img
 
 def preprocess_image_folder(folder_path, target_size=(128, 128)):
-    """
-    Preprocess a folder of images and store them in a numpy array.
-
-    Parameters:
-        folder_path (str): C:\\Users\\Beckett\Downloads\\training
-        target_size (tuple): 200
-    Returns:
-        numpy.ndarray: Numpy array containing preprocessed images.
-    """
+    
     # Get a list of image files in the folder
     image_files = [f for f in os.listdir(folder_path) if f.endswith(('.jpg', '.png', '.jpeg'))]
 
@@ -45,7 +37,7 @@ def preprocess_image_folder(folder_path, target_size=(128, 128)):
 
 # Example usage:
 # Provide the path to your image folder and specify the target size
-image_folder_path = r"C:\Users\Beckett\Downloads\training"
+image_folder_path = r"C:\Users\Beckett\Pictures\AI Training\Wedgies"
 target_size = (128, 128)
 
 # Preprocess the images and store them in a numpy array

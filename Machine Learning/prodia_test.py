@@ -1,55 +1,87 @@
-import tensorflow as tf
-from tensorflow.keras.layers import Conv2D, Conv2DTranspose
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.losses import MeanSquaredError
-from tensorflow.keras.optimizers import Adam
+import os
 import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.layers import Dense, Reshape, Conv2DTranspose, Conv2D, Flatten
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.losses import BinaryCrossentropy
+from tensorflow.keras.optimizers import Adam
 
-# Load and preprocess your image dataset (not shown here)
+# Load preprocessed images from the folder
+image_folder_path = r"C:\Users\Beckett\Pictures\AI Training\Wedgies"  # Update with your image folder path
+preprocessed_images = np.load(os.path.join(image_folder_path, "preprocessed_images.npy"))
 
-# Define the Denoising Diffusion Probabilistic Model (DDPM) architecture
-def build_ddpm_model(input_shape=(128, 128, 3)):
+# Normalize input images to range [-1, 1]
+preprocessed_images = (preprocessed_images.astype(np.float32) - 127.5) / 127.5
+
+# Define the Generator
+def build_generator(input_shape=(100,)):
     model = Sequential([
-        Conv2D(64, (3, 3), strides=(2, 2), padding='same', activation='relu', input_shape=input_shape),
-        Conv2D(128, (3, 3), strides=(2, 2), padding='same', activation='relu'),
-        Conv2DTranspose(128, (3, 3), strides=(2, 2), padding='same', activation='relu'),
-        Conv2DTranspose(64, (3, 3), strides=(2, 2), padding='same', activation='relu'),
-        Conv2D(3, (3, 3), padding='same', activation='sigmoid')  # Output layer
+        Dense(8 * 8 * 256, activation='relu', input_shape=input_shape),  # Adjusted input shape
+        Reshape((8, 8, 256)),  # Adjusted shape to match subsequent layers
+        Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same', activation='relu'),  # Adjusted filter size
+        Conv2DTranspose(64, (4, 4), strides=(2, 2), padding='same', activation='relu'),  # Adjusted filter size
+        Conv2D(3, (3, 3), padding='same', activation='tanh')
     ])
     return model
 
-# Build the model
-ddpm_model = build_ddpm_model()
+# Define the Discriminator
+def build_discriminator(input_shape=(128, 128, 3)):
+    model = Sequential([
+        Conv2D(32, (3, 3), strides=(2, 2), padding='same', activation='relu', input_shape=input_shape),
+        Conv2D(64, (3, 3), strides=(2, 2), padding='same', activation='relu'),
+        Flatten(),
+        Dense(1, activation='sigmoid')
+    ])
+    return model
 
-# Compile the model
-ddpm_model.compile(optimizer=Adam(), loss=MeanSquaredError())
+# Build and compile the GAN
+input_dim = 100
+image_shape = (128, 128, 3)
+generator = build_generator(input_shape=(100,))
 
-# Train the model with your preprocessed image dataset
-# Replace X_train with your preprocessed image data
-# Assume X_train is a numpy array of shape (num_samples, height, width, channels)
-# Adjust epochs, batch_size, etc., based on your requirements
-ddpm_model.fit(X_train, X_train, epochs=10, batch_size=32, shuffle=True)
+discriminator = build_discriminator(input_shape=(128, 128, 3))
+discriminator.compile(optimizer=Adam(learning_rate=0.0002, beta_1=0.5), loss='binary_crossentropy', metrics=['accuracy'])
 
-# Generate denoised images using the trained model
-denoised_images = ddpm_model.predict(X_test)  # Assuming X_test is your test image data
+# The combined GAN model
+discriminator.trainable = False
+gan_input = tf.keras.layers.Input(shape=(input_dim,))
+x = generator(gan_input)
+gan_output = discriminator(x)
+gan = tf.keras.models.Model(gan_input, gan_output)
+gan.compile(optimizer=Adam(learning_rate=0.0002, beta_1=0.5), loss='binary_crossentropy')
 
-# Optionally, visualize the original and denoised images
-import matplotlib.pyplot as plt
+# Train the GAN
+epochs = 100
+batch_size = 32
+num_samples = preprocessed_images.shape[0]
 
-# Display original and denoised images
-n = 5  # Number of images to display
-plt.figure(figsize=(10, 4))
-for i in range(n):
-    # Display original image
-    ax = plt.subplot(2, n, i + 1)
-    plt.imshow(X_test[i])
-    plt.title("Original")
-    plt.axis('off')
+for epoch in range(epochs):
+    for batch_start in range(0, num_samples, batch_size):
+        batch_end = min(batch_start + batch_size, num_samples)
+        real_images = preprocessed_images[batch_start:batch_end]
+        
+        # Define batch_end here
+        noise = np.random.randn(batch_end - batch_start, input_dim) 
+        # Train the discriminator
+        d_loss_real = discriminator.train_on_batch(real_images, np.ones((batch_end - batch_start, 1)))
+        d_loss_fake = discriminator.train_on_batch(generator.predict(noise), np.zeros((batch_end - batch_start, 1)))
 
-    # Display denoised image
-    ax = plt.subplot(2, n, i + 1 + n)
-    plt.imshow(denoised_images[i])
-    plt.title("Denoised")
-    plt.axis('off')
+        # Train the generator (via the GAN model)
+        g_loss = gan.train_on_batch(noise, np.ones((batch_end - batch_start, 1)))
 
-plt.show()
+        print(f"Epoch {epoch+1}/{epochs}, Batch {batch_start // batch_size + 1}/{num_samples // batch_size}, D Loss Real: {d_loss_real[0]}, D Loss Fake: {d_loss_fake[0]}, G Loss: {g_loss}")
+
+        # Visualize generated images
+        if batch_start % (batch_size * 10) == 0:
+            noise = np.random.randn(5, input_dim)
+            generated_images = generator.predict(noise)
+
+            plt.figure(figsize=(10, 4))
+            for i in range(5):
+                ax = plt.subplot(1, 5, i + 1)
+                plt.imshow((generated_images[i] + 1) / 2)  # Scale from [-1, 1] to [0, 1]
+                plt.title("Generated")
+                plt.axis('off')
+
+            plt.show()
