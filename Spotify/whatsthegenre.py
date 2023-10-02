@@ -15,7 +15,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
                                                redirect_uri=SPOTIPY_REDIRECT_URI,
                                                scope="user-library-read"))
 
-def fetch_liked_songs(start_offset=0, limit=50):
+def fetch_liked_songs(start_offset=2000, limit=50):
     """
     Fetch the liked songs from Spotify.
 
