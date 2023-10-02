@@ -88,7 +88,3 @@ if __name__ == "__main__":
     message_body = "Brought to you by: Detailed Daily Dino, LLC, LTD, INC"
     DOTD = DinoEmail()
     DOTD.send_dino(dino_name, dino_photo, message_body)
-<<<<<<< HEAD
-
-=======
->>>>>>> 4082a405aa92e157feddc7615c2b4d4431bf1b55

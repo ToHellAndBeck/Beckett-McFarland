@@ -1,36 +1,13 @@
-<<<<<<< HEAD
 from os import listdir, makedirs
 from os.path import abspath, basename, join, exists, getmtime
 from openpyxl import load_workbook
 from datetime import datetime as dt
 import pandas as pd
-=======
-import xlrd
-import openpyxl
-import os
-filepath = r"C:\Users\beckett.mcfarland\Documents"
-# Load the source workbook using xlrd
-source_workbook = xlrd.open_workbook('copy of Master Switch Report 8-27-23.xlsb')
 
-# Specify the source and destination sheets by name
-source_sheet_name = 'Conference Call Switch'
-destination_workbook = openpyxl.load_workbook('Switch tracking numbers 8-25-23.xlsb')
-destination_sheet_name = 'DAILY DUMP'
+SCRIPT_PATH = r"C:\Users\beckett.mcfarland\Documents\output_excel_files"
+SCRIPT_DIR = SCRIPT_PATH.replace(basename(SCRIPT_PATH), "")
+TODAY = dt.now()
 
-# Get the source sheet using xlrd
-source_sheet = source_workbook.sheet_by_name(source_sheet_name)
->>>>>>> 4082a405aa92e157feddc7615c2b4d4431bf1b55
-
-# Get the destination sheet using openpyxl
-destination_sheet = destination_workbook[destination_sheet_name]
-print(source_sheet.values)
-# Copy data from source to destination
-# for row_index in range(source_sheet.nrows):
-#    for col_index in range(source_sheet.ncols):
-#        cell_value = source_sheet.cell(row_index, col_index).value
-#       destination_sheet.cell(row=row_index + 1, column=col_index + 1).value = cell_value
-
-<<<<<<< HEAD
 # destination settings
 F_NAME_DATE_FORMAT = "%m-%d-%y"
 TODAY_STR = dt.strftime(TODAY, F_NAME_DATE_FORMAT)
@@ -50,15 +27,15 @@ F_TYPES_ALLOWED = [".xlsx", ".xlsm"]  # accept only files that end in these
 SRC_F_DIR = r'C:\Users\beckett.mcfarland\Documents\output_excel_files'  # change this to the directory the source file is located
 SRC_SHEET_NAME = "Conference Call Switch"
 MIN_SRC_COLUMNS = 5
-=======
-# Save the destination workbook
-destination_workbook.save('destination.xlsb')
->>>>>>> 4082a405aa92e157feddc7615c2b4d4431bf1b55
 
-# Close the destination workbook (openpyxl handles source workbook closing)
-destination_workbook.close()
+def file_meets_requirements(f_name: str):
+    for ending in F_TYPES_ALLOWED:
+        if f_name.endswith(ending):
+            for requirement in F_NAME_REQUIREMENTS:
+                if requirement not in f_name:
+                    return False
+            return True
 
-<<<<<<< HEAD
 def get_most_recent_file(f_dir: str):
     most_recent_name = None
     most_recent_time = None
@@ -95,6 +72,8 @@ if DST_SHEET_NAME in dst_wb.sheetnames:
     # Remove the existing sheet
     dst_wb.remove(dst_wb[DST_SHEET_NAME])
 
+# Create a new sheet in the destination workbook
+
 # Get the source sheet
 src_sheet = src_wb[SRC_SHEET_NAME]
 
@@ -108,7 +87,4 @@ for row in src_sheet.iter_rows():
 
 # Save the destination workbook
 dst_wb.save(DST_F_PATH)
-print(f"The sheet '{DST_SHEET_NAME}' has been overwritten in '{DST_F_PATH}'.")
-=======
-print("Data copied and saved to destination.xlsb")
->>>>>>> 4082a405aa92e157feddc7615c2b4d4431bf1b55
+print(f"The sheet '{SRC_SHEET_NAME}' has been overwritten in '{DST_F_PATH}'.")
