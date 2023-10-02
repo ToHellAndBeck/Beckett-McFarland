@@ -6,7 +6,7 @@ from openpyxl import load_workbook
 # Email account credentials and server settings
 IMAP_SERVER = 'imap.wachter.com'
 EMAIL = 'beckett.mcfarland@wachter.com'
-PASSWORD = 'Summer2023'
+PASSWORD = ''
 
 # Folder to save the Excel attachment
 SAVE_FOLDER = r"C:\Users\beckett.mcfarland\Documents\output_excel_files"
