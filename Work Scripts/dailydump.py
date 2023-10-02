@@ -1,10 +1,8 @@
-from datetime import datetime as dt
-from os.path import abspath, basename, join
-from os.path import exists
-
-import pandas as pd
-
+from os import listdir, makedirs
+from os.path import abspath, basename, join, exists, getmtime
 from openpyxl import load_workbook
+from datetime import datetime as dt
+import pandas as pd
 
 SCRIPT_PATH = r"C:\Users\beckett.mcfarland\Documents\output_excel_files"
 SCRIPT_DIR = SCRIPT_PATH.replace(basename(SCRIPT_PATH), "")
@@ -17,7 +15,7 @@ DST_F_PREFIX = f"Switch Report {TODAY_STR} - Python"
 DST_F_POSTFIX = ".xlsx"
 DST_F_NAME = DST_F_PREFIX + DST_F_POSTFIX
 DST_DIR = SCRIPT_DIR
-DST_F_PATH = join(DST_DIR, DST_F_NAME)
+DST_F_PATH = join(DST_DIR, r"C:\Users\beckett.mcfarland\Documents\Switch Report - Python.xlsx")
 DST_SHEET_NAME = "DAILY DUMP"
 # source  settings
 F_NAME_REQUIREMENTS = [
@@ -26,7 +24,7 @@ F_NAME_REQUIREMENTS = [
     "Report",
 ]  # accept only files that contain these
 F_TYPES_ALLOWED = [".xlsx", ".xlsm"]  # accept only files that end in these
-SRC_F_DIR = r'L:\Rollout\52648 FYE24 Network Refresh Switch\Daily Report'  # change this to the directory the source file is located
+SRC_F_DIR = r'C:\Users\beckett.mcfarland\Documents\output_excel_files'  # change this to the directory the source file is located
 SRC_SHEET_NAME = "Conference Call Switch"
 MIN_SRC_COLUMNS = 5
 
@@ -63,11 +61,28 @@ file_to_wrk = get_most_recent_file(SRC_F_DIR)
 src_wb = load_workbook(file_to_wrk, data_only=True)
 
 if not exists(DST_F_PATH):
-    dst_wb = src_wb  # Use the source workbook as the destination workbook
-    dst_wb.save(DST_F_PATH)
-    dst_wb.close()
+    print(f"The file '{DST_F_PATH}' does not exist.")
+    exit()
 
-with pd.ExcelWriter(DST_F_PATH, mode="a", if_sheet_exists="overlay") as writer:
-    src_wb[SRC_SHEET_NAME].to_excel(writer, sheet_name=DST_SHEET_NAME)
+# Load the existing Excel workbook
+dst_wb = load_workbook(DST_F_PATH)
 
-print(f"The sheet '{SRC_SHEET_NAME}' has been appended to '{DST_F_NAME}'.")
+# Check if the destination sheet already exists
+if DST_SHEET_NAME in dst_wb.sheetnames:
+    # Remove the existing sheet
+    dst_wb.remove(dst_wb[DST_SHEET_NAME])
+
+# Get the source sheet
+src_sheet = src_wb[SRC_SHEET_NAME]
+
+# Create a new sheet in the destination workbook
+dst_sheet = dst_wb.create_sheet(title=DST_SHEET_NAME)
+
+# Copy data from source sheet to destination sheet
+for row in src_sheet.iter_rows():
+    for cell in row:
+        dst_sheet[cell.coordinate].value = cell.value
+
+# Save the destination workbook
+dst_wb.save(DST_F_PATH)
+print(f"The sheet '{DST_SHEET_NAME}' has been overwritten in '{DST_F_PATH}'.")

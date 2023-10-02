@@ -6,8 +6,8 @@ import time
 
 # Who you want the email to go to and what the prefix of the message subject should be
 EMAIL_CONFIG = {
-    "To": ["rolloutsupport@wachter.com","john.brewer@wachter.com","catarina.wolfe@wachter.com","shane.landsberry@wachter.com","Tanner.Martin@wachter.com","logan.rose@wachter.com","jordan.matz@wachter.com"],
-    "Subject": "Dino of the day"
+    "To": ["rolloutsupport@wachter.com","john.brewer@wachter.com","Chad.Miller@wachter.com","catarina.wolfe@wachter.com","shane.landsberry@wachter.com","Tanner.Martin@wachter.com","logan.rose@wachter.com","jordan.matz@wachter.com","leighann.young@wachter.com","William.Tucker@wachter.com","chelsey.mccoy@wachter.com"],
+    "Subject": "Daily Scaly"
 }
 
 # How the date in the subject should be formatted
@@ -88,4 +88,4 @@ if __name__ == "__main__":
     message_body = "Brought to you by: Detailed Daily Dino, LLC, LTD, INC"
     DOTD = DinoEmail()
     DOTD.send_dino(dino_name, dino_photo, message_body)
-print(r.text)  # Print the response content
+
