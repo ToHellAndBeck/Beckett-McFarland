@@ -87,4 +87,4 @@ for row in src_sheet.iter_rows():
 
 # Save the destination workbook
 dst_wb.save(DST_F_PATH)
-print(f"The sheet '{SRC_SHEET_NAME}' has been overwritten in '{DST_F_PATH}'.")
+print(f"The sheet '{DST_SHEET_NAME}' has been overwritten in '{DST_F_PATH}'.")

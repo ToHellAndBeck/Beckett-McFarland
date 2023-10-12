@@ -1,0 +1,36 @@
+name=Office 3
+
+height=2.4
+thickness=0.18
+inverse=False
+ceiling=False
+floor=False
+close=False
+#
+# Walls
+#
+walls=4
+
+w=12.0,a=False,r=0.0,h=0,m=0.0,f=0.0,c=False,cf=1.0,cd=180.0,cs=12
+w=8.0,a=False,r=90.0,h=0,m=0.0,f=0.0,c=False,cf=1.0,cd=180.0,cs=12
+w=-12.0,a=False,r=0.0,h=0,m=0.0,f=0.0,c=False,cf=1.0,cd=180.0,cs=12
+w=-8.0,a=False,r=90.0,h=0,m=0.0,f=0.0,c=False,cf=1.0,cd=180.0,cs=12
+
+#
+# Baseboard
+#
+baseboard=True
+baseh=0.12
+baset=0.015
+#
+# Wall Cover
+#
+shell=False
+shellh=0.2
+shellt=0.025
+shellf=1.0
+shellb=1.0
+#
+# Materials
+#
+materials=True

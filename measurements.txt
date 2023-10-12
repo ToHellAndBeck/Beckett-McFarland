@@ -1,0 +1,46 @@
+PDF Path: c:\Users\beckett.mcfarland\Desktop\PDF2DAT\app\pdfs\new\51705 Site Survey WO_2023-10-02.pdf
+Location: outside
+Measurements:
+length: 84.0
+width: 81.0
+height: 1.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\PDF2DAT\app\pdfs\new\51705 Site Survey WO_2023-10-02.pdf
+Location: 1st floor
+Measurements:
+length: 38.0
+width: 23.0
+height: 2.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\PDF2DAT\app\pdfs\new\51705 Site Survey WO_2023-10-02.pdf
+Location: None
+Measurements:
+length: 19.0
+width: 14.0
+height: 1.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\PDF2DAT\app\pdfs\new\51705 Site Survey WO_2023-10-02.pdf
+Location: sales floor
+Measurements:
+length: 23.0
+width: 38.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\PDF2DAT\app\pdfs\new\51705 Site Survey WO_2023-10-02.pdf
+Location: office 1
+Measurements:
+length: 12.0
+width: 10.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\PDF2DAT\app\pdfs\new\51705 Site Survey WO_2023-10-02.pdf
+Location: warehouse
+Measurements:
+length: 79.0
+width: 78.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\PDF2DAT\app\pdfs\new\51705 Site Survey WO_2023-10-02.pdf
+Location: racks
+Measurements:
+length: 25.0
+width: 4.0
+height: 11.0
+

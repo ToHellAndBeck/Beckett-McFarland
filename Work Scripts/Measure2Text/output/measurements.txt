@@ -1,0 +1,54 @@
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: outside
+Measurements:
+length: 140.0
+width: 56.0
+height: 1.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: 1st floor
+Measurements:
+length: 58.0
+width: 40.0
+height: 1.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: sales floor
+Measurements:
+length: 41.0
+width: 37.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: office 1
+Measurements:
+length: 12.0
+width: 10.0
+height: 6.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: office 2
+Measurements:
+length: 11.0
+width: 10.0
+height: 7.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: office 3
+Measurements:
+length: 11.0
+width: 10.0
+height: 8.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: warehouse
+Measurements:
+length: 60.0
+width: 100.0
+
+PDF Path: c:\Users\beckett.mcfarland\Desktop\Beckett-McFarland\Work Scripts\Measure2Text\app\pdfs\new\51705 Site Survey WO_2023-10-03 (3).pdf
+Location: racks
+Measurements:
+length: 34.0
+width: 4.0
+height: 16.0
+

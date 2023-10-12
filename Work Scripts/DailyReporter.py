@@ -1,57 +1,32 @@
-import imaplib
-import email
+import shutil
 import os
-from openpyxl import load_workbook
 
-# Email account credentials and server settings
-IMAP_SERVER = 'imap.wachter.com'
-EMAIL = 'beckett.mcfarland@wachter.com'
-PASSWORD = ''
+def get_most_recent_file(directory):
+    files = os.listdir(directory)
+    files = [file for file in files if file.endswith('.xlsx')]  # Filter for Excel files
+    if not files:
+        print(f"No Excel files found in {directory}")
+        return None
 
-# Folder to save the Excel attachment
-SAVE_FOLDER = r"C:\Users\beckett.mcfarland\Documents\output_excel_files"
+    # Get the most recent file based on modification time
+    most_recent_file = max(files, key=lambda f: os.path.getmtime(os.path.join(directory, f)))
+    return most_recent_file
 
-def download_excel_attachment(msg):
-    for part in msg.walk():
-        if part.get_content_maintype() == 'multipart' and part.get('Content-Disposition') is None:
-            continue
+if __name__ == "__main__":
+    source_directory = r"L:\Rollout\52648 FYE24 Network Refresh Switch\Daily Report"
+    destination_directory = r"C:\Users\beckett.mcfarland\Documents\output_excel_files"
+    new_filename = "Master Switch Report.xlsx"
 
-        if part.get('Content-Disposition') and 'excel' in part.get_filename().lower():
-            filename = part.get_filename()
-            filepath = os.path.join(SAVE_FOLDER, filename)
-            with open(filepath, 'wb') as f:
-                f.write(part.get_payload(decode=True))
-            return filepath
+    # Get the most recent file in the source directory
+    original_filename = get_most_recent_file(source_directory)
 
-def check_emails():
-    try:
-        # Connect to the IMAP server
-        mail = imaplib.IMAP4_SSL(IMAP_SERVER)
-        mail.login(EMAIL, PASSWORD)
-        mail.select('inbox')
+    if original_filename:
+        source_file = os.path.join(source_directory, original_filename)
+        destination_file = os.path.join(destination_directory, new_filename)
 
-        # Search for emails from a specific sender with "master switch report" in the subject
-        result, data = mail.search(None, '(FROM "CJ.Ewell@wachter.com")', '(SUBJECT "master switch report")')
+        # Copy the file to the destination directory
+        shutil.copy(source_file, destination_file)
 
-        # Get the list of email IDs
-        email_ids = data[0].split()
-        
-        # Process only the most recent eligible email
-        for email_id in email_ids[:1]:
-            result, message_data = mail.fetch(email_id, '(RFC822)')
-            raw_email = message_data[0][1]
-            msg = email.message_from_bytes(raw_email)
-
-            # Download the Excel attachment
-            excel_filepath = download_excel_attachment(msg)
-            if excel_filepath:
-                print(f"Excel file saved at: {excel_filepath}")
-                break  # Break the loop after processing the first eligible email
-
-        # Logout and close the connection
-        mail.logout()
-    except Exception as e:
-        print(f"An error occurred: {str(e)}")
-
-if __name__ == '__main__':
-    check_emails()
+        print(f"'{original_filename}' has been copied to '{destination_directory}' and renamed '{new_filename}'.")
+    else:
+        print("No file found to copy.")

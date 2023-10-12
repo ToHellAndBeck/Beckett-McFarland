@@ -4,8 +4,9 @@ from constants import DINO_DIR_ENDPOINT, ALL_DINOS_ENDPOINT, DINO_INFO_TAG, IMG_
 from dino_of_the_day import DinoEmail
 from bs4 import BeautifulSoup
 import os
-import schedule
-import time
+
+
+
 def get_all_dinos():
     r = requests.get(ALL_DINOS_ENDPOINT)
     return r.json()
@@ -61,7 +62,7 @@ def create_message_body(dino_info_dict:dict):
     body = ""
     for k,v in dino_info_dict.items():
         row = ":\t".join([k, v])
-        body = body + "\n" + row
+        body = body + "<p>" + row +"</p>"
     return body
 
 all_dinos = get_all_dinos()
