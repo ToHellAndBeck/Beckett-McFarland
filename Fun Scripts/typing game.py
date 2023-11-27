@@ -14,28 +14,33 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Typing Game")
 
 # Turret settings
-turret_x = WIDTH // 2
+turret_width, turret_height = 20, 20
+turret_x = WIDTH // 2 - turret_width // 2
 turret_y = HEIGHT - 50
 turret_speed = 5
 
-
 # Ship settings
 ships = []
-ship_speed = 2
+ship_speed = .1
 
 # Word list
-word_list = ["ship1", "ship2", "ship3", "ship4"]  # Add more words as needed
+word_list = [
+    "apple", "banana", "carrot", "elephant", "giraffe", "umbrella", "mountain", "ocean", 
+    "sunshine", "firefly", "treasure", "whisper", "happiness", "laughter", "courage", 
+    "infinity", "serendipity", "harmony", "tranquility", "effervescent"
+]  # Add more words as needed
 
 # Function to create a new ship
 def create_ship():
     word = random.choice(word_list)
-    x = random.randint(0, WIDTH)
+    x = random.randint(0, WIDTH - FONT.size(word)[0])
     y = 0
-    ships.append({"word": word, "x": x, "y": y})
+    ships.append({"word": word, "x": x, "y": y, "width": FONT.size(word)[0], "height": FONT.size(word)[1]})
 
 # Game loop
 running = True
 score = 0
+input_word = ""
 
 while running:
     for event in pygame.event.get():
@@ -46,12 +51,41 @@ while running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT] and turret_x > 0:
         turret_x -= turret_speed
-    if keys[pygame.K_RIGHT] and turret_x < WIDTH:
+    if keys[pygame.K_RIGHT] and turret_x < WIDTH - turret_width:
         turret_x += turret_speed
+
+    # Check for collisions with the turret
+    for ship in ships:
+        if (
+            turret_x < ship["x"] + ship["width"]
+            and turret_x + turret_width > ship["x"]
+            and turret_y < ship["y"] + ship["height"]
+            and turret_y + turret_height > ship["y"]
+        ):
+            if input_word == ship["word"]:
+                ships.remove(ship)
+                score += 1
+            input_word = ""
+
+    # Handle input
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                input_word = ""
+            elif event.key == pygame.K_BACKSPACE:
+                input_word = input_word[:-1]
+            else:
+                input_word += event.unicode.lower()
 
     # Create new ships at random intervals
     if random.randint(1, 100) == 1:
         create_ship()
+
+    # Clear the screen
+    screen.fill((0, 0, 0))
+
+    # Draw the turret
+    pygame.draw.rect(screen, WHITE, (turret_x, turret_y, turret_width, turret_height))
 
     # Move and draw ships
     for ship in ships:
@@ -62,32 +96,13 @@ while running:
     # Remove ships that have gone off the screen
     ships = [ship for ship in ships if ship["y"] < HEIGHT]
 
-    # Check for collisions with the turret
-    for ship in ships:
-        if ship["y"] + text_surface.get_height() >= turret_y:
-            input_word = ""
-            current_word = ""
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:
-                        if input_word == ship["word"]:
-                            ships.remove(ship)
-                            score += 1
-                    elif event.key == pygame.K_BACKSPACE:
-                        input_word = input_word[:-1]
-                    else:
-                        current_word += event.unicode
-                        input_word = current_word.lower()
-
-    # Clear the screen
-    screen.fill((0, 0, 0))
-
-    # Draw the turret
-    pygame.draw.rect(screen, WHITE, (turret_x, turret_y, 20, 20))
-
     # Draw the score
     score_text = FONT.render("Score: " + str(score), True, WHITE)
     screen.blit(score_text, (10, 10))
+
+    # Draw the typed word
+    input_text = FONT.render(input_word, True, WHITE)
+    screen.blit(input_text, (turret_x, turret_y + turret_height))
 
     # Update the display
     pygame.display.flip()

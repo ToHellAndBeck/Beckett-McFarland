@@ -5,7 +5,8 @@ import json
 url = "https://api.prodia.com/v1/sdxl/generate"
 payload = {
     "model": "dreamshaperXL10_alpha2.safetensors [c8afe2ef]",
-    "prompt": "Create a Renaissance-style oil painting that portrays a regal king and queen posing for a royal portrait. 2people. Capture the essence of the Renaissance era with meticulous attention to detail in their clothing, surroundings, and expressions. Emphasize the opulence and regal presence of the monarchs, and make sure the background and setting reflect the grandeur of the time, evoking the classic style of historical portraiture."
+    "prompt": "create a retro modernist building on city skyline, sunset.",
+    "aspect_ratio": "landscape"
     
 }
 api_key = "67313905-dd5b-4d3a-a24d-79432b7ad44b"  # Replace with your actual API key
@@ -13,6 +14,7 @@ headers = {
     "accept": "application/json",
     "content-type": "application/json",
     "X-Prodia-Key": api_key
+    
 }
 
 response = requests.post(url, json=payload, headers=headers)

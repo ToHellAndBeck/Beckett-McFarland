@@ -7,6 +7,7 @@ import os
 
 
 
+
 def get_all_dinos():
     r = requests.get(ALL_DINOS_ENDPOINT)
     return r.json()

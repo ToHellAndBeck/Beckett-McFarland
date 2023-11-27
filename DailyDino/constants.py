@@ -12,3 +12,4 @@ if not os.path.isdir(IMG_DIR):
         os.mkdir(IMG_DIR)
     except:
         f"Directory {IMG_DIR} did not exist and I tried to make it but it failed"
+        

@@ -3,9 +3,21 @@ from typing import Literal
 
 from random import choice
 
-def hit_api(url, method:Literal["get", "post"]="get", return_type:Literal["json","content"]|None="json"):
+import requests
+from typing import Literal
+
+def hit_api(url, method: Literal["get", "post"] = "get", return_type: Literal["json", "content"] | None = "json", timeout: int = 5):
     hit_method = requests.get if method == 'get' else requests.post
-    return hit_method(url).json() if return_type == 'json' else hit_method(url).content.decode()
+    try:
+        response = hit_method(url, timeout=timeout)
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+        return response.json() if return_type == 'json' else response.content.decode()
+    except requests.exceptions.RequestException as e:
+        print(f"Error accessing {url}: {e}")
+        return None
+
+# Rest of your code remains unchanged
+
 
 def iter_dict(d:dict, parent=""):
     for dict_key, dict_value in d.items():
