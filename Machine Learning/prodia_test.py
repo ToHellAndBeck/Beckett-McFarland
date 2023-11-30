@@ -8,7 +8,7 @@ from tensorflow.keras.losses import BinaryCrossentropy
 from tensorflow.keras.optimizers import Adam
 
 # Load preprocessed images from the folder
-image_folder_path = r"C:\Users\Beckett\Pictures\AI Training\Wedgies"  # Update with your image folder path
+image_folder_path = r""  # Update with your image folder path
 preprocessed_images = np.load(os.path.join(image_folder_path, "preprocessed_images.npy"))
 
 # Normalize input images to range [-1, 1]
