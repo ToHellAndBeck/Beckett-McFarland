@@ -41,7 +41,8 @@ class PokemonSelectorApp(QWidget):
 
     def load_pokemon_data(self):
         # Read Pokémon data from the CSV file
-        with open('pokelist/pokemon.csv', newline='', encoding='utf-8') as csvfile:
+        csvpath=r"C:\Users\beckett\Desktop\Beckett-McFarland\fantasymon\pokelist\pokemon.csv"
+        with open(csvpath, newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             return list(reader)
 
