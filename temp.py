@@ -1,50 +1,21 @@
-import requests
-from bs4 import BeautifulSoup
-import random
+import pandas as pd
 
-# Define the URL of the Wikipedia page
-url = 'https://en.wikipedia.org/wiki/List_of_cryptids'
+# Assuming your Excel file is named 'your_file.xlsx' and the columns are named 'employee' and 'lodging'
+excel_file_path = 'your_file.xlsx'
 
-# Send a GET request to the page
-response = requests.get(url)
+# Read the Excel file into a pandas DataFrame
+df = pd.read_excel(excel_file_path)
 
-# Check if the request was successful
-if response.status_code == 200:
-    # Use BeautifulSoup to parse the HTML content
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
-    # Find all the tables on the page
-    tables = soup.find_all('table', {'class': 'wikitable'})
-    
-    # Assuming the first table is the one with the cryptids
-    cryptid_table = tables[0]
-    
-    # Find all the rows in the table
-    rows = cryptid_table.find_all('tr')
-    
-    # Remove the header row
-    rows.pop(0)
-    
-    # Choose a random row
-    random_row = random.choice(rows)
-    
-    # Find all the columns in the row
-    cols = random_row.find_all('td')
-    
-    # The first column is the name of the cryptid
-    cryptid_name = cols[0].text.strip()
-    
-    # The image should be in the second column if it exists
-    image_data = cols[1].find('img')
-    
-    # Get the image URL if it exists
-    image_url = None
-    if image_data and 'src' in image_data.attrs:
-        image_url = 'https:' + image_data.attrs['src']
-    
-    # Print the name and the image URL
-    print(f'Cryptid Name: {cryptid_name}')
-    if image_url:
-        print(f'Image URL: {image_url}')
-else:
-    print('Failed to retrieve the Wikipedia page.')
+# Create a DataFrame with all unique 'employee' values
+all_employees = pd.DataFrame(df['employee'].unique(), columns=['employee'])
+
+# Merge with the original DataFrame to include all names, even those with 'lodging' <= 1
+result = pd.merge(all_employees, df[df['lodging'] > 1].groupby('employee').size().reset_index(name='Count'), how='left', on='employee')
+
+# Replace NaN values with 0
+result['Count'] = result['Count'].fillna(0)
+
+# Create a new Excel writer object
+with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
+    # Write the result to a new sheet named 'results'
+    result.to_excel(writer, sheet_name='results', index=False)
