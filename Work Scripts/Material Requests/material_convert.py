@@ -17,20 +17,14 @@ def extract_data(message):
 
 # Input data
 input_data = """
-[[12:02 PM] CJ Ewell
-switch team 8 site 5397 needs 4 power cords for th  ex4600 switches
-switch team 12 site 1244 needs 10 sfp 10 gig and 40 lc-sc 3 meter blue jumpers
-Switch team 17 site 3572 needs 10 sfp 10 gig
+    [10:55 AM] CJ Ewell
+    Team 3 Andrew windham Holiday Inn
 
-[12:03 PM] CJ Ewell
-switch tam carter site 5497 1 roll 1000 ft fiber if not there use 800 and 2 40 gig dac cables
+    11120 Moriah Drive Fort Worth, Texas 76177 United States
 
-[12:03 PM] CJ Ewell
-switch team steve site 605 needs 30 lc-lc 3 meter fiber jumpers
-
-[1:14 PM] CJ Ewell
-switch team karl site 280 needs 4 sfp 10 gig
-"""
+    needs 940 needs 20 sfp 10 gig sent to hotel saturday delivery
+    
+        """
 
 # Split the input into messages
 messages = re.split(r'\n(?=\[\d+:\d+ [APM]+\])', input_data.strip())

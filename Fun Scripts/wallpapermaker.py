@@ -67,7 +67,7 @@ def generate():
                 # Save the image to a file
                 user_prompt_cleaned = ''.join(c if c.isalnum() or c in ('-', '_') else '_' for c in user_prompt)
                 file_name = f"{user_prompt_cleaned}_{random_number}.png"
-                folder_path = r"C:\Users\beckett.mcfarland\Pictures\Pixel Art"
+                folder_path = r"C:\Users\beckett.mcfarland\Pictures\Verdent"
                 file_path = os.path.join(folder_path, file_name)
                 image.save(file_path)
                 print(f"Image saved to: {file_path}")
