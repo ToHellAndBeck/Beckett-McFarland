@@ -179,12 +179,12 @@ wachter_login_button_xpath = '//*[@id="ctl00_cphMain_ssoLoginControl_btnSingleSi
 click_button(driver, wachter_login_button_xpath)
 next_button_path = '//*[@id="idSIButton9"]'
 wait_for_element_to_be_clickable(driver, next_button_path)
-email_address = 'beckett.mcfarland@wachter.com'
+email_address = 
 input_text(driver, email_element_id, email_address)
 sign_in_button_xpath = '//*[@id="idSIButton9"]'
 wait_for_element_to_be_clickable(driver, sign_in_button_xpath)
 password_element_id = 'i0118'
-password = 'Ozymandias99!'
+password = 
 input_text(driver, password_element_id, password)
 stay_signed_in_button_xpath = '//*[@id="idSIButton9"]'
 click_button(driver, stay_signed_in_button_xpath)
